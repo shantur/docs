@@ -116,7 +116,7 @@ Command|Parameters
 :---|:---
 Backlog<a id="backlog"></a>|List of commands to be executed in sequence separated by  `;`<BR> See [Using Backlog](#using-backlog) for examples.
 BlinkCount<a id="blinkcount"></a>|Number of relay toggles ([blinks](#power)) **(does not control the status LED)**<BR> `0` = blink many times before restoring power state <BR> `1..32000` = set number of blinks *(default = `10`)*
-BlinkTime<a id="blinktime"></a>|`2..3600` set duration, in 0.1 second increments, to [blink](#power) (i.e., toggle Power) for a relay **(does not control the status LED)**
+BlinkTime<a id="blinktime"></a>|`2..3600` = set duration, in 0.1 second increments, to [blink](#power) (i.e., toggle Power) for a relay **(does not control the status LED)**
 ButtonDebounce<a id="buttondebounce"></a>|User control over button debounce timing &emsp;  »6.2.0<BR>`40..1000` = set button debounce time in milliseconds *(default = `50`)*
 Buzzer<a id="buzzer"></a>|`0` = stop active buzzer cycle&emsp;  »6.6.0.18<BR>`<count>,<beep>,<silence>,<tune>` = [read more...](Buzzer)<BR>`2,3` - Beep twice with 300 milliseconds duration and 100 milliseconds pause<BR>`2,3,4` - Beep twice with 300 milliseconds duration and 400 milliseconds pause<BR>`1,2,3,0xF54` (0000 0000 0000 0000 0000 1111 0101 0100). Each `1` bit beeps for 200 milliseconds and each bounded `0` bit pauses for 300 milliseconds
 FanSpeed<a id="fanspeed"></a>|Fan speed control *(iFan02/iFan03 only)*&emsp;  »6.1.0<BR>`0` = turn fan OFF<BR>`1..3` = set fan speed<BR>`+` = increase fan speed <BR>`-` = decrease fan speed <BR>
@@ -260,7 +260,7 @@ Timer\<x\><a id="timer"></a>|Parameters for Timer\<x\> where x = `1..16`<BR>`0` 
 Command|Parameters
 :---|:---
 AdcParam<a id="adcparam"></a>|ADC0 analog input tuning parameters&emsp;  »6.6.0<br>`<sensor>, <param1>, <param2>, <param3>`<BR>`<sensor>`<li>`2` = Temperature [Steinhart-Hart thermistor equation](https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation) parameters:</li><ul>`<param1>` = NTC Voltage bridge resistor in Ohms *(default = `32000`)*<br>`<param2>` = NTC Resistance in Ohms *(default = `10000`)*<BR>`<param3>` = NTC Beta Coefficient *(default = `3350`)*</li></ul><li>`3` = Light [Lux equation](https://www.allaboutcircuits.com/projects/design-a-luxmeter-using-a-light-dependent-resistor/) parameters:</li><ul>`<param1>` = LDR Voltage bridge resistor in Ohms *(default = `10000`)*<BR>`<param2>` = LDR Lux Scalar *(default = `12518931`)*<BR>`<param3>` = LDR Lux Exponent *(default = `-1.4050`)*
-Altitude<a id="altitude"></a>|`-30000..30000` - altitude in meters
+Altitude<a id="altitude"></a>|`-30000..30000` = altitude in meters
 AmpRes<a id="ampres"></a>|Current sensor resolution<BR>`0..3` = maximum number of decimal places
 Counter\<x\><a id="counter"></a>|`0` = reset Counter\<x\><BR> `1..64900` = preset Counter\<x\><BR>`-1..-64900` = decrease Counter\<x\><BR>`+1..+64900` = increase Counter\<x\><BR>In order to define and use a Counter, _**you must configure one of the free device GPIO as `Counter<x>`**_
 CounterDebounce<a id="counterdebounce"></a>|`0` = turn off counter debounce<BR> `1..3200` = set counter debounce time in milliseconds
@@ -519,16 +519,16 @@ KNX_CB\<x\><a id="KNX_CB"></a>|Setup Group Address to Receive Data/Commands <BR>
 Command|Parameters
 |:--- |:---
 Display<a id="display"></a>|Show current display setting as a JSON payload
-DisplayAddress<a id="displayaddress"></a>|`0..255` Set display module address
-DisplayDimmer<a id="displaydimmer"></a>|`0` Turn the display off<BR> `1..100` Turn the display on<BR>`0..100` Set display luminosity *(only on 8x8 Dot-Matrix displays)*
-DisplayMode<a id="displaymode"></a>|`0..5` Set to display [predefined content](Displays#displaymode-parameters) according to display type
+DisplayAddress<a id="displayaddress"></a>|`0..255` = Set display module address
+DisplayDimmer<a id="displaydimmer"></a>|`0` = Turn the display off<BR> `1..100` = Turn the display on<BR>`0..100` = Set display luminosity *(only on 8x8 Dot-Matrix displays)*
+DisplayMode<a id="displaymode"></a>|`0..5` = Set to display [predefined content](Displays#displaymode-parameters) according to display type
 DisplayModel<a id="displaymodel"></a>|Set display model:<BR>`1` = [I<sup>2</sup>C LCD Display](https://learn.adafruit.com/i2c-spi-lcd-backpack) (default addresses `0x27`, `0x3F`)<BR>`2` = [SSD1306](https://learn.adafruit.com/monochrome-oled-breakouts/arduino-library-and-examples) OLED 128x32/128x64 (default I<sup>2</sup>C addresses `0x3C`, `0x3D`)<BR>`3` = [HT16K33](https://www.adafruit.com/product/1427) 8x8 Dot-Matrix<BR>`4` = [ILI9341](https://www.adafruit.com/product/1770) TFT LCD<BR>`5` = [2.9 inch E-Paper Display](https://www.waveshare.com/wiki/2.9inch_e-Paper_Module) 296x128 (software 3-wire SPI)<BR>`6` = [4.2 inch E-Paper Display](https://www.waveshare.com/wiki/4.2inch_e-Paper_Module) 400x300 (software 3-wire SPI)<BR>`7` = [SH1106](https://www.ebay.de/itm/1-3-OLED-Display-Weis-SH1106-128x64-I2C-Modul-Arduino-Raspberry-Pi/162572755829?hash=item25da176375:g:hdgAAOSwQKZdQZ10) OLED 128x64 (default I<sup>2</sup>C address `0x3c`)<BR>`8` = [ILI9488](https://www.buydisplay.com/default/lcd-3-5-inch-320x480-tft-display-module-optl-touch-screen-w-breakout-board) TFT 480x320 (capacitive touch, hardware 3-wire SPI)<BR>`9` = [SSD1351](https://www.ebay.de/itm/1-5-128x128-OLED-Display-Modul-RGB-SPI-Interface-Arduino-Raspberry-Pi/123256209315?hash=item1cb2a47fa3:g:WtsAAOSwZb5bTfjF) color OLED 128x128 (hardware 3-wire SPI)<BR>`10` = [RA8867](https://www.buydisplay.com/default/spi-7-inch-tft-lcd-dislay-module-1024x600-ra8876-optl-touch-screen-panel) TFT LCD 1024x600 (capacitive touch, hardware 4-wire SPI)
-DisplayRefresh<a id="displayrefresh"></a>|`1..7` Set time in seconds to update predefined content when using `DisplayMode` &ne; `0`
-DisplaySize<a id="displaysize"></a>|`1..4` Set display scale-up size *(SSD1306  and ILI9341 only)*
+DisplayRefresh<a id="displayrefresh"></a>|`1..7` = Set time in seconds to update predefined content when using `DisplayMode` &ne; `0`
+DisplaySize<a id="displaysize"></a>|`1..4` = Set display scale-up size *(SSD1306  and ILI9341 only)*
 DisplayRotate<a id="displayrotate"></a>|Set rotation angle<BR> `0` = 0°<BR> `1` = 90°<BR> `2` = 180°<BR> `3` = 270°
-DisplayText<a id="displaytext"></a>|`<value>` - See [DisplayText use](Displays#displaytext-use)
-DisplayCols<a id="displaycols"></a>|`1..44` Set number of display columns *(for display modes>0)*
-DisplayRows <a id="displayrows"></a>|`1..32` Set number of display rows *(for display modes>0)*
+DisplayText<a id="displaytext"></a>|`<value>` = See [DisplayText use](Displays#displaytext-use)
+DisplayCols<a id="displaycols"></a>|`1..44` = Set number of display columns *(for display modes>0)*
+DisplayRows <a id="displayrows"></a>|`1..32` = Set number of display rows *(for display modes>0)*
 DisplayFont<a id="displayfont"></a>|Specify the current font<BR>`0` use classic GFX font<BR>`1` = 12<BR>`2` = 24<BR>`3` = 8 (opt)<BR>`7` use RA8876 internal font 
 DisplayWidth<a id="displaywidth"></a>|Specify the display width in pixels *(SSD1306 only)*&emsp;  »6.6.0.2
 DisplayHeight<a id="displayheight"></a>|Specify the display height in pixels *(SSD1306 only)*&emsp;  »6.6.0.2
@@ -538,12 +538,12 @@ DisplayHeight<a id="displayheight"></a>|Specify the display height in pixels *(S
 
 <a id="tb-stepperMotors">Command|Parameters
 :---|:---
-MotorMIS<a id="motormis"></a>|`1,2,4,8,16` Set micro stepping increment - 1/1 (full steps) to 1/16 *(default = `1`)*
-MotorSPR<a id="motorspr"></a>|`integer` Set the number of steps the given motor needs for one revolution *(default = `200`)*<BR>This is dependent on the type of motor and micro stepping. Most common motors are 1.8° per step.
-MotorRPM<a id="motorrpm"></a>|`1..300` Set revolutions per minute *(default = `30`)*
-MotorMove<a id="motormove"></a>|`integer` Move the motor the given number of steps (positive values: clockwise, negative values: counterclockwise)
-MotorRotate<a id="motorrotate"></a>|`integer` Rotate the motor the given number of degrees (positive values: clockwise, negative values: counterclockwise)
-MotorTurn<a id="motormis"></a>|`float` Spin the motor the given number of turns (positive values: clockwise, negative values: counterclockwise)
+MotorMIS<a id="motormis"></a>|`1,2,4,8,16` = Set micro stepping increment - 1/1 (full steps) to 1/16 *(default = `1`)*
+MotorSPR<a id="motorspr"></a>|`integer` = Set the number of steps the given motor needs for one revolution *(default = `200`)*<BR>This is dependent on the type of motor and micro stepping. Most common motors are 1.8° per step.
+MotorRPM<a id="motorrpm"></a>|`1..300` = Set revolutions per minute *(default = `30`)*
+MotorMove<a id="motormove"></a>|`integer` = Move the motor the given number of steps (positive values: clockwise, negative values: counterclockwise)
+MotorRotate<a id="motorrotate"></a>|`integer` = Rotate the motor the given number of degrees (positive values: clockwise, negative values: counterclockwise)
+MotorTurn<a id="motormis"></a>|`float` = Spin the motor the given number of turns (positive values: clockwise, negative values: counterclockwise)
 
 ### Blinds, Shutters and Roller Shades
 » v6.6.0.14
@@ -551,16 +551,16 @@ MotorTurn<a id="motormis"></a>|`float` Spin the motor the given number of turns 
 Command<BR> (x = `1..4`)|Parameters
 :---|:---
 ShutterCalibration\<x><a id="shuttercalibration"></a>|Granular shutter position calibration. Real position in cm must be put in at 30 50 70 90 percent
-ShutterCloseDuration\<x><a id="shuttercloseduration"></a>| `1..255` *(default = `10`)*<BR>Define the time, in seconds, it takes to fully close the shutter. A fraction of a second can be specified (e.g. `45.7`).
+ShutterCloseDuration\<x><a id="shuttercloseduration"></a>| `1..255` = *(default = `10`)*<BR>Define the time, in seconds, it takes to fully close the shutter. A fraction of a second can be specified (e.g. `45.7`).
 ShutterClose\<x><a id="shutterclose"></a>|Engage the relay to close the shutter. This action can be requested at any time.
 ShutterInvert\<x><a id="shutterinvert"></a>|`0` = use default shutter positioning<BR>`1` = invert shutter positioning
-ShutterMotorDelay\<x><a id="shuttermotordelay"></a>|`0.00 .. 12.75` *(default = `0`)*<BR>Define the time, in seconds, that it takes the motor to start moving once power is turned on.
-ShutterOpenDuration\<x><a id="shutteropenduration"></a>|`1..255` *(default = `10`)*<BR>time, in seconds, to fully open the shutter. Fraction of a second can be specified (e.g. `45.7`).
+ShutterMotorDelay\<x><a id="shuttermotordelay"></a>|`0.00 .. 12.75` = *(default = `0`)*<BR>Define the time, in seconds, that it takes the motor to start moving once power is turned on.
+ShutterOpenDuration\<x><a id="shutteropenduration"></a>|`1..255` = *(default = `10`)*<BR>time, in seconds, to fully open the shutter. Fraction of a second can be specified (e.g. `45.7`).
 ShutterOpen\<x><a id="shutteropen"></a>|Engage the relay to open the shutter. This action can be requested at any time.
 ShutterPosition\<x><a id="shutterposition"></a>|`0..100`, `UP`, `DOWN`, `STOP`<BR>`0` = Closed, `100` = Open<BR>If the shutter is inverted (e.g., if used with KNX), `100` = Closed, `0` = Open<BR>A shutter position change can be requested at any time. The shutter will stop and revert or update to the requested position. The shutter's actual position will be saved _**after**_ the movement is completed. In this case, the position will be restored during reboot. An interruption during shutter movement (e.g., a device restart) will lose the current position.
-ShutterRelay\<x><a id="shutterrelay"></a>|`<value>`<BR>`0` = disable this and all higher numbered shutters<BR>`1,3,5,7,...` (must be an odd number) = define the `Relay<value>` component used to open the shutter. This relay's mate, the next higher numbered relay, closes the shutter. Depending on the shutter mode, the relays may need to be interlocked using the [`Interlock`](Commands#interlock) command.<BR>**The `ShutterRelay` command must be executed first before any other shutter commands for `Shutter<x>` can be executed.**
-ShutterSetClose\<x><a id="shuttersetclose"></a>|Set the shutter closed position. `ShutterPosition` will be reset to fully closed value (e.g., `0` when `ShutterInvert = 0`, `100` otherwise).
-ShutterSetHalfway\<x><a id="shuttersethalfway"></a>| `0..100` *(default = `50`)*<BR>Define shutter half open position (in percent)
+ShutterRelay\<x><a id="shutterrelay"></a>|`<value>` <BR>`0` = disable this and all higher numbered shutters<BR>`1,3,5,7,...` (must be an odd number) = define the `Relay<value>` component used to open the shutter. This relay's mate, the next higher numbered relay, closes the shutter. Depending on the shutter mode, the relays may need to be interlocked using the [`Interlock`](Commands#interlock) command.<BR>**The `ShutterRelay` command must be executed first before any other shutter commands for `Shutter<x>` can be executed.**
+ShutterSetClose\<x><a id="shuttersetclose"></a>| `value` = Set the shutter closed position. `ShutterPosition` will be reset to fully closed value (e.g., `0` when `ShutterInvert = 0`, `100` otherwise).
+ShutterSetHalfway\<x><a id="shuttersethalfway"></a>| `0..100` = *(default = `50`)*<BR>Define shutter half open position (in percent)
 ShutterStop\<x><a id="shutterstop"></a>|Disengage the relays to stop the shutter
 See also| [`SetOption80`](#SetOption80) - Enable shutter support
 

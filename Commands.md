@@ -548,7 +548,7 @@ MotorTurn<a id="motormis"></a>|`float` = Spin the motor the given number of turn
 ### Blinds, Shutters and Roller Shades
 » v6.6.0.14
 
-Command<BR> (x = `1..4`)|Parameters
+Command|Parameters
 :---|:---
 ShutterCalibration\<x><a id="shuttercalibration"></a>|Granular shutter position calibration. Real position in cm must be put in at 30 50 70 90 percent
 ShutterCloseDuration\<x><a id="shuttercloseduration"></a>| `1..255` = *(default = `10`)*<BR>Define the time, in seconds, it takes to fully close the shutter. A fraction of a second can be specified (e.g. `45.7`).
